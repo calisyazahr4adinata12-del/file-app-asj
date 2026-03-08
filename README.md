@@ -1,13 +1,12 @@
 # File Upload App 
 
-Web aplikasi upload file Caca.
+Web aplikasi upload file Caca berbasis CRUD (Create, Read, Update, Delet)
 
 ## Features
 - Upload file
 - Input nama, email, judul file
-- Confetti animation
-- Sparkle dan shooting star
-- Walking cat paw prints
+- Confetti animasi jika file berhasil di upload
+- hiasan sparkle di bergound App
 
 ## Tech Stack
 - React (Vite)
@@ -15,7 +14,6 @@ Web aplikasi upload file Caca.
 - PostgreSQL
 - MinIO
 - Docker
-- CRUD
 
 ## Cara menjalankan
 
