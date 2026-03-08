@@ -1,0 +1,189 @@
+body{
+  margin:0;
+  font-family: "Comic Sans MS", cursive;
+  cursor: url("https://cur.cursors-4u.net/cursors/cur-13/cur1154.cur"), auto;
+}
+
+/* background */
+
+.container{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: linear-gradient(135deg,#ffc1e3,#ffd9f0,#ffeefb);
+  overflow:hidden;
+}
+
+/* card */
+
+.card{
+  background:white;
+  padding:40px;
+  border-radius:25px;
+  width:340px;
+  text-align:center;
+  box-shadow:0 20px 40px rgba(0,0,0,0.15);
+  animation: float 4s infinite ease-in-out;
+}
+
+.title{
+  color:#ff4fa3;
+  margin-bottom:20px;
+}
+
+/* inputs */
+
+input{
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+  border-radius:10px;
+  border:1px solid #ddd;
+}
+
+button{
+  margin-top:10px;
+  background:#ff4fa3;
+  color:white;
+  border:none;
+  padding:10px 25px;
+  border-radius:20px;
+  cursor:pointer;
+  font-size:16px;
+  transition:0.3s;
+}
+
+button:hover{
+  transform:scale(1.1);
+  background:#ff2a8b;
+}
+
+/* floating card */
+
+@keyframes float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+  100%{transform:translateY(0)}
+}
+
+/* sparkle */
+
+.sparkle{
+  position:absolute;
+  width:8px;
+  height:8px;
+  background:white;
+  border-radius:50%;
+  animation:blink 2s infinite;
+}
+
+.s1{top:20%;left:20%}
+.s2{top:50%;right:20%}
+.s3{bottom:25%;left:35%}
+
+@keyframes blink{
+  0%{opacity:0}
+  50%{opacity:1}
+  100%{opacity:0}
+}
+
+/* ribbon animation */
+
+.ribbon{
+  position:absolute;
+  width:12px;
+  height:120px;
+  background:#ff7bcf;
+  opacity:0.6;
+  animation:fall 6s linear infinite;
+}
+
+.r1{left:10%}
+.r2{right:15%}
+
+@keyframes fall{
+  0%{transform:translateY(-200px) rotate(0)}
+  100%{transform:translateY(100vh) rotate(360deg)}
+}
+
+/* shooting stars */
+
+.stars span{
+  position:absolute;
+  top:50%;
+  left:-100px;
+  width:4px;
+  height:4px;
+  background:white;
+  border-radius:50%;
+  box-shadow:0 0 10px white;
+  animation:shoot 5s linear infinite;
+}
+
+.stars span:nth-child(2){
+  animation-delay:2s;
+}
+
+.stars span:nth-child(3){
+  animation-delay:4s;
+}
+
+@keyframes shoot{
+  0%{
+    transform:translate(0,0);
+    opacity:1;
+  }
+  100%{
+    transform:translate(1200px,-400px);
+    opacity:0;
+  }
+}
+
+/* CAT WALK */
+
+.cat-walk{
+  position: fixed;
+  bottom: 0;
+  left: -200px;
+  width: 120px;
+  animation: catWalk 15s linear infinite;
+  z-index: 999;
+}
+
+.cat-walk img{
+  width: 100%;
+}
+
+@keyframes catWalk{
+  0%{left:-200px;}
+  100%{left:110%;}
+}
+
+/* PAW TRAIL */
+
+.paw-trail{
+  position: fixed;
+  bottom: 5px;
+  width: 100%;
+  pointer-events: none;
+}
+
+.paw-trail span{
+  position: absolute;
+  font-size: 24px;
+  opacity: 0;
+  animation: pawFade 6s linear infinite;
+}
+
+.paw-trail span:nth-child(1){left:10%; animation-delay:1s;}
+.paw-trail span:nth-child(2){left:25%; animation-delay:2s;}
+.paw-trail span:nth-child(3){left:40%; animation-delay:3s;}
+.paw-trail span:nth-child(4){left:55%; animation-delay:4s;}
+.paw-trail span:nth-child(5){left:70%; animation-delay:5s;}
+
+@keyframes pawFade{
+  0%{opacity:0; transform:translateY(10px);}
+  50%{opacity:1;}
+  100%{opacity:0; transform:translateY(20px);}
+}
