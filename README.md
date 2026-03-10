@@ -1,6 +1,6 @@
 # File Upload App
 
-Web aplikasi upload file Caca berbasis CRUD (Create, Read, Update, Delet)
+Web aplikasi upload file Caca berbasis CRUD (Create, Read, Update, Delete)
 
 ## Features
 - Upload file
