@@ -67,6 +67,37 @@ minioClient.bucketExists(bucket, function (err, exists) {
 app.post("/upload", upload.single("file"), async (req, res) => {
   try {
     const file = req.file;
+    const { name, email } = req.body;
+
+    /* ===============================
+       VALIDASI INPUT
+    ================================= */
+
+    // cek field wajib
+    if (!name || !email || !file) {
+      return res.status(400).json({
+        message: "Name, email, dan file wajib diisi"
+      });
+    }
+
+    // validasi format email
+    const emailRegex = /\S+@\S+\.\S+/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({
+        message: "Format email tidak valid"
+      });
+    }
+
+    // validasi ukuran file max 5MB
+    if (file.size > 5 * 1024 * 1024) {
+      return res.status(400).json({
+        message: "Ukuran file maksimal 5MB"
+      });
+    }
+
+    /* ===============================
+       PROSES UPLOAD
+    ================================= */
 
     await minioClient.putObject(bucket, file.originalname, file.buffer);
 
@@ -78,6 +109,7 @@ app.post("/upload", upload.single("file"), async (req, res) => {
     );
 
     res.json({ message: "File uploaded successfully 💗" });
+
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Upload failed" });
@@ -89,6 +121,25 @@ app.get("/files", async (req, res) => {
   const result = await db.query("SELECT * FROM files");
   res.json(result.rows);
 });
+
+app.get("/files/:id", async (req, res) => {
+  const id = req.params.id;
+  const result = await db.query("SELECT * FROM files WHERE id=$1", [id]);
+  res.json(result.rows[0]);
+});
+
+app.put("/files/:id", async (req, res) => {
+  const id = req.params.id;
+  const { filename } = req.body;
+
+  await db.query(
+    "UPDATE files SET filename=$1 WHERE id=$2",
+    [filename, id]
+  );
+
+  res.json({ message: "File updated" });
+});
+
 
 // Delete File
 app.delete("/files/:id", async (req, res) => {
